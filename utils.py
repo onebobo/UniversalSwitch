@@ -1,6 +1,7 @@
 import win32api
 import win32con
 import win32gui
+import os
 from ctypes import *  
 import time  
 VK_CODE = {  
@@ -212,13 +213,14 @@ def get_window_rect(HWND):
 	return rect
 
 def cmd_command(cmdLine):
-	win32api.WinExec(cmdLine)
+	#win32api.WinExec(cmdLine)
+	os.system(cmdLine)
 
 def exec_and_wait_pop(func,*args,timeout=5):
-	old = getForegroundWindow()
+	old = get_foreground_window()
 	func(*args)
 	i=0.
-	while(getForegroundWindow()==old):
+	while(get_foreground_window()==old):
 		time.sleep(0.01)
 		i=i+0.01
 		if(i>timeout):
