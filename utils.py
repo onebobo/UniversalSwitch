@@ -177,13 +177,19 @@ def mouse_dclick(x=None,y=None):
 		time.sleep(0.05)  
 	win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)  
 	win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)  
+def mouse_dclick(x=None,y=None):  
+	if not x is None and not y is None:  
+		mouse_move(x,y)  
+		time.sleep(0.05)  
+	win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)  
+	win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)  
 	win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)  
 	win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
 
 def mouse_move(x,y):  
   windll.user32.SetCursorPos(x, y)  
 
-def key_input(str=''):
+def key_input(str=''):  
 	for c in str:
 		if(c.isupper()):
 			win32api.keybd_event(VK_CODE["shift"],0,0,0)
